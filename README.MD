@@ -140,7 +140,7 @@ banner({ type: 0 }).then((res) => {
 
 ## 使用文档
 
-[文档地址](https://docs-neteasecloudmusicapi.vercel.app)
+[文档地址](https://music-api.focalors.ltd/docs/#/)
 
 ## 功能特性
 
