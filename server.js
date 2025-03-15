@@ -240,7 +240,7 @@ async function consturctServer(moduleDefs) {
         })
         console.log('[OK]', decode(req.originalUrl))
 
-        if (req.baseUrl === '/song/url/v1' || req.baseUrl === '/song/url') {
+        if (song.freeTrialInfo !== null && (req.baseUrl === '/song/url/v1' || req.baseUrl === '/song/url')) {
           const song = moduleResponse['body']['data'][0]
             if (!song.url || [1, 4].includes(song.fee)) {
               const match = require('@unblockneteasemusic/server')
