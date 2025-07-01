@@ -1,6 +1,6 @@
-# 网易云音乐 API
+# 网易云音乐 API Reborn
 
-网易云音乐 Node.js API service
+为停更的网易云音乐 NodeJs API 提供持续的维护！
 
 <p>
 <a href="https://www.npmjs.com/package/NeteaseCloudMusicApi"><img src="https://img.shields.io/npm/v/NeteaseCloudMusicApi.svg" alt="Version"></a>
@@ -11,6 +11,7 @@
 </p>
 
 ## 灵感来自
+[NeteaseCloudMusicAPI(已删库)](https://github.com/Binaryify/neteasecloudmusicapi)
 
 [disoul/electron-cloud-music](https://github.com/disoul/electron-cloud-music)
 
@@ -27,17 +28,9 @@
 ## 安装
 
 ```shell
-$ git clone git@gitlab.com:Binaryify/NeteaseCloudMusicApi.git
+$ git clone https://github.com/IamFurina/NeteaseCloudMusicApiReborn.git
 $ cd NeteaseCloudMusicApi
-$ npm install
-```
-
-或者
-
-```shell
-$ git clone https://gitlab.com/Binaryify/NeteaseCloudMusicApi.git
-$ cd NeteaseCloudMusicApi
-$ npm install
+$ pnpm install
 ```
 
 ## 运行
@@ -60,12 +53,12 @@ windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
 $ set PORT=4000 && node app.js
 ```
 
-## npx 方式运行
+## npx 方式运行（暂不支持）
 
 可在终端直接执行
 
 ```bash
-npx NeteaseCloudMusicApi@latest
+npx NeteaseCloudMusicApiReborn@latest
 ```
 
 使用此命令，可直接启动服务，无需下载或者 clone 项目
@@ -109,7 +102,7 @@ export PORT=9000
 v3.31.0 后支持 Node.js 调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
 
 ```js
-const { login_cellphone, user_cloud } = require('NeteaseCloudMusicApi')
+const { login_cellphone, user_cloud } = require('NeteaseCloudMusicApiReborn')
 async function main() {
   try {
     const result = await login_cellphone({
@@ -132,7 +125,7 @@ main()
 
 ```ts
 // test.ts
-import { banner } from 'NeteaseCloudMusicApi'
+import { banner } from 'NeteaseCloudMusicApiReborn'
 banner({ type: 0 }).then((res) => {
   console.log(res)
 })
@@ -140,7 +133,7 @@ banner({ type: 0 }).then((res) => {
 
 ## 使用文档
 
-[文档地址](https://docs-neteasecloudmusicapi.vercel.app)
+[文档地址](https://music-api.focalors.ltd/docs/#)
 
 ## 功能特性
 
@@ -475,8 +468,8 @@ $ npm test
 
 ## 贡献者
 
-![](https://opencollective.com/NeteaseCloudMusicApi/contributors.svg?width=890)
+![](https://opencollective.com/NeteaseCloudMusicApiReborn/contributors.svg?width=890)
 
 ## License
 
-[The MIT License (MIT)](https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/LICENSE)
+[The MIT License (MIT)](https://github.com/IamFurina/NeteaseCloudMusicApiReborn/blob/main/LICENSE)
