@@ -9,7 +9,7 @@
 </p>
 
 ## 灵感来自
-[NeteaseCloudMusicAPI(已删库)](https://github.com/Binaryify/neteasecloudmusicapi)
+[Binaryify/NeteaseCloudMusicAPI(已删库)](https://github.com/Binaryify/neteasecloudmusicapi)
 
 [disoul/electron-cloud-music](https://github.com/disoul/electron-cloud-music)
 
@@ -56,7 +56,7 @@ $ set PORT=4000 && node app.js
 可在终端直接执行
 
 ```bash
-npx NeteaseCloudMusicApiReborn@latest
+npx @neteaseapireborn/api@latest
 ```
 
 使用此命令，可直接启动服务，无需下载或者 clone 项目
