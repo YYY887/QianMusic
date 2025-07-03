@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>网易云音乐 API</title>
+  <title>网易云音乐 API Reborn</title>
   <style>
     html, body {
       height: 100vh;
       width: 100vw;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      font-family: 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -21,26 +21,70 @@
       align-items: center;
     }
 
+    .container {
+      background: rgba(255,255,255,0.95);
+      padding: 2.5em 2em 2em 2em;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+      max-width: 520px;
+      width: 95vw;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s cubic-bezier(.39,.575,.565,1) both;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 1em;
-      color: #42b983;
+      font-size: 2.3em;
+      margin-bottom: 0.5em;
+      color: #2d8cf0;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #e0eafc;
+    }
+
+    .version {
+      font-size: 1.1em;
+      color: #888;
+      margin-left: 0.5em;
     }
 
     p {
-      font-size: 1.2em;
-      margin-bottom: 2em;
-      color: #666;
+      font-size: 1.1em;
+      margin-bottom: 1.2em;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .current-url {
+      font-size: 0.98em;
+      color: #aaa;
+      margin-bottom: 1.2em;
+      word-break: break-all;
     }
 
     a {
-      color: #42b983;
+      color: #2d8cf0;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    a:hover {
+      color: #42b983;
+      text-decoration: underline;
     }
 
-    a:hover {
-      color: #329d6e;
+    h2 {
+      font-size: 1.3em;
+      margin: 1.5em 0 0.7em 0;
+      color: #2d8cf0;
+      font-weight: 600;
     }
 
     ul {
@@ -48,59 +92,68 @@
       padding: 0;
       margin: 0;
       text-align: left;
-      max-width: 600px;
       width: 100%;
     }
 
     li {
-      margin: 0.5em 0;
-      line-height: 1.5;
+      margin: 0.6em 0;
+      line-height: 1.7;
       display: flex;
       align-items: center;
+      background: #f4f8fb;
+      border-radius: 6px;
+      padding: 0.5em 1em;
+      transition: box-shadow 0.2s;
+      box-shadow: 0 1px 2px rgba(45,140,240,0.04);
+    }
+    li:hover {
+      box-shadow: 0 4px 12px rgba(45,140,240,0.10);
+      background: #eaf4fb;
     }
 
     .number {
-      margin-right: 10px;
-      color: #999;
+      margin-right: 12px;
+      color: #2d8cf0;
       font-weight: bold;
+      font-size: 1.1em;
+      min-width: 2em;
+      display: inline-block;
+      text-align: right;
     }
 
-    .container {
-      background: #fff;
-      padding: 2em;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-height: 80vh; /* 设置最大高度 */
-      overflow-y: auto; /* 启用垂直滚动条 */
-    }
-    
-    .version {
-      margin-top: 0.5em;
-      font-size: 1.0em;
-      color: #666;
+    .footer {
+      margin-top: 2em;
+      color: #aaa;
+      font-size: 0.98em;
+      text-align: center;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>网易云音乐 API <span id="api-version"></span></h1>
-    <p>本项目基于binaryify的网易云API二改, 添加了解灰接口</p>
-    <p>当你看到这个页面时，这个服务已经成功跑起来了~</p>
-    <p class="current-url"><span id="current-url"></span></p>
-    <a href="/docs">查看文档</a>
-    <h2>例子:</h2>
+    <h1>网易云音乐 API <span id="api-version" class="version"></span></h1>
+    <p>🎵 这是一个持续维护的第三方网易云音乐 API 服务，兼容原版接口，支持多平台部署。</p>
+    <p>当你看到这个页面时，服务已成功运行！</p>
+    <p class="current-url">当前访问：<span id="current-url"></span></p>
+    <a href="/docs" target="_blank">📚 查看接口文档</a>
+    <h2>常用示例</h2>
     <ul id="example-list">
-      <li><a href="./search?keywords=海阔天空">搜索</a></li>
-      <li><a href="./comment/music?id=186016&limit=1">歌曲评论</a></li>
-      <li><a href="./dj/program?rid=336355127">电台节目</a></li>
-      <li><a href="./qrlogin.html">二维码登录</a></li>
-      <li><a href="./audio_match_demo/index.html">听歌识曲</a></li>
-      <li><a href="./cloud.html">云盘上传</a></li>
-      <li><a href="./eapi_decrypt.html">eapi 参数/返回值解析</a></li>
+      <li><a href="./search?keywords=海阔天空">搜索歌曲</a></li>
+      <li><a href="./song/url/unblock?id=186016">歌曲解灰</a></li>
+      <li><a href="./comment/music?id=186016&limit=1">获取歌曲评论</a></li>
+      <li><a href="./dj/program?rid=336355127">获取电台节目</a></li>
+      <li><a href="./qrlogin.html">二维码登录演示</a></li>
+      <li><a href="./audio_match_demo/index.html">听歌识曲 Demo</a></li>
+      <li><a href="./cloud.html">云盘上传 Demo</a></li>
+      <li><a href="./eapi_decrypt.html">EAPI 参数/返回值解析</a></li>
       <li><a href="./api.html">API 调试界面</a></li>
       <li><a href="./playlist_import.html">歌单导入工具</a></li>
     </ul>
+    <div class="footer">
+      <span>© 2025 网易云音乐 API Reborn &nbsp;|&nbsp; <a href="https://github.com/NeteaseCloudMusicApiReborn/api" target="_blank">GitHub</a></span>
+    </div>
   </div>
 
   <script src="https://fastly.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
