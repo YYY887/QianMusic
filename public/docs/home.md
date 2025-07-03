@@ -1572,7 +1572,7 @@ tags: 歌单标签
 
 **接口地址 :** `/song/url/unblock`
 
-**调用例子 :** `/song/download/url/v1?id=2155423468`
+**调用例子 :** `/song/unblock/url/v1?id=2155423468`
 
 ### 搜索
 
