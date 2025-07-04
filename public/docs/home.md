@@ -1570,9 +1570,9 @@ tags: 歌单标签
 
 **必选参数 :** `id` : 音乐 id
 
-**接口地址 :** `/song/url/unblock`
+**接口地址 :** `/song/url/unblock` 或者 `/song/url/match` (为了适配SPlayer)
 
-**调用例子 :** `/song/url/unblock?id=1969519579`
+**调用例子 :** `/song/url/unblock?id=1969519579` 或者 `/song/url/match?id=1969519579`
 
 ### 搜索
 
