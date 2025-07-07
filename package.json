@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "NeteaseCloudMusicApi",
   "version": "4.25.0",
   "description": "网易云音乐 NodeJS 版 API",
+=======
+  "name": "@neteaseapireborn/api",
+  "version": "4.28.10",
+  "description": "为停更的网易云音乐 NodeJs API 提供持续的维护！",
+>>>>>>> 05bedc6 (feat: 支持直接在请求歌曲url使用unm server)
   "scripts": {
     "start": "node app.js",
     "test": "mocha -r intelli-espower-loader -t 60000 server.test.js main.test.js --exit",

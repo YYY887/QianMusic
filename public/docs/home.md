@@ -1544,7 +1544,8 @@ tags: 歌单标签
 
 **必选参数 :** `id` : 音乐 id
  `level`: 播放音质等级, 分为 `standard` => `标准`,`higher` => `较高`, `exhigh`=>`极高`, 
-`lossless`=>`无损`, `hires`=>`Hi-Res`, `jyeffect` => `高清环绕声`, `sky` => `沉浸环绕声`, `dolby` => `杜比全景声`, `jymaster` => `超清母带`
+`lossless`=>`无损`, `hires`=>`Hi-Res`, `jyeffect` => `高清环绕声`, `sky` => `沉浸环绕声`, `dolby` => `杜比全景声`, `jymaster` => `超清母带` 
+ `unblock`: 是否使用`UnblockNeteaseMusic`, 分为`true`和`false`
 
 **接口地址 :** `/song/url/v1`
 
@@ -1564,7 +1565,7 @@ tags: 歌单标签
 
 **调用例子 :** `/check/music?id=1969519579`
 
-### 获取客户端灰色歌曲链接
+### 直接获取灰色歌曲链接
 
 说明 : 技术来自于 [UnblockNeteaseMusic](https://github.com/unblockneteasemusic/server) 的支持, 聚合多个音源匹配(有几率匹配不成功)
 

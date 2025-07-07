@@ -4,7 +4,7 @@ const host = global.host || 'http://localhost:3000'
 describe('测试获取歌词是否正常', () => {
   it('数据应该有 lrc 字段', (done) => {
     const qs = {
-      id: 347230,
+      id: 1969519579,
       realIP: global.cnIp,
     }
 
