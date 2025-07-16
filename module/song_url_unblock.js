@@ -14,7 +14,7 @@ module.exports = async (query, request) => {
             status: 200,
             body: {
                 code: 200,
-                data: Array.isArray(result) ? result : [result],
+                data: result,
             },
         }
     } catch (e) {
