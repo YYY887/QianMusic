@@ -145,10 +145,16 @@ async function consturctServer(moduleDefs) {
    * CORS & Preflight request
    */
   app.use((req, res, next) => {
+    // 强制设置 Access-Control-Allow-Credentials: true
     if (req.path !== '/' && !req.path.includes('.')) {
+      let allowOrigin = CORS_ALLOW_ORIGIN || req.headers.origin
+      // 禁止为 *，必须为具体域名
+      if (!allowOrigin || allowOrigin === '*') {
+        allowOrigin = req.headers.origin || ''
+      }
       res.set({
         'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': CORS_ALLOW_ORIGIN || req.headers.origin || '*',
+        'Access-Control-Allow-Origin': allowOrigin,
         'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
         'Content-Type': 'application/json; charset=utf-8',
