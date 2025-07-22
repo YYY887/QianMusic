@@ -253,7 +253,8 @@ async function consturctServer(moduleDefs) {
           const song = moduleResponse['body']['data'][0]
             if (song.freeTrialInfo !== null || !song.url || [1, 4].includes(song.fee)) {
               const match = require('@unblockneteasemusic/server')
-              const source = ['pyncmd','kuwo', 'qq', 'migu', 'kugou']
+              const source = process.env.UNBLOCK_SOURCE ? process.env.UNBLOCK_SOURCE.split(',') : ['pyncmd', 'kuwo', 'qq', 'migu', 'kugou']
+              console.log("开始解灰", source)
               const { url } = await match(req.query.id, source)
               song.url = url
               song.freeTrialInfo = 'null'

@@ -7,8 +7,10 @@ const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
     try {
         const match = require("@unblockneteasemusic/server")
-        const source = ['pyncmd', 'kuwo', 'qq', 'migu', 'kugou']
-        const result = await match(query.id, source)
+        const source = query.source
+            ? query.source.split(',') : ['pyncmd', 'kuwo', 'qq', 'migu', 'kugou']
+        const server = query.server ? query.server.split(',') : query.server
+        const result = await match(query.id, !server? source : server)
         const proxy = process.env.PROXY_URL;
         console.log("[OK] 开始解灰", query.id, result)
         if (result.url.includes('kuwo')) { result.proxyUrl = proxy + result.url }
