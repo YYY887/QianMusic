@@ -262,7 +262,8 @@ async function consturctServer(moduleDefs) {
           }
           if (song.url.includes('kuwo')) {
             const proxy = process.env.PROXY_URL;
-            if (proxy) {song.proxyUrl = proxy + song.url}
+            const useProxy = process.env.ENABLE_PROXY || 'false'
+            if (useProxy === 'true' && proxy) {song.proxyUrl = proxy + song.url}
           }
         }
 

@@ -18,7 +18,8 @@ module.exports = async (query, request) => {
       const result = await match(query.id, source)
       console.log('[OK] 开始解灰', query.id, result)
       if (result.url.includes('kuwo')) {
-        var proxyUrl = process.env.PROXY_URL + result.url
+        const useProxy = process.env.ENABLE_PROXY || 'false'
+        var proxyUrl = useProxy === 'true' ? process.env.PROXY_URL + result.url : result.url
       }
       let url = Array.isArray(result) ? (result[0]?.url || result[0]) : (result.url || result)
       if (url) {
@@ -32,7 +33,7 @@ module.exports = async (query, request) => {
                 url,
                 type: 'flac',
                 level: query.level,
-                freeTrialInfo: 'unblock',
+                freeTrialInfo: 'null',
                 fee: 0,
                 proxyUrl: proxyUrl || '',
               },

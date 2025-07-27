@@ -13,7 +13,8 @@ module.exports = async (query, request) => {
         const result = await match(query.id, !server? source : server)
         const proxy = process.env.PROXY_URL;
         console.log("[OK] 开始解灰", query.id, result)
-        if (result.url.includes('kuwo')) { result.proxyUrl = proxy + result.url }
+        const useProxy = process.env.ENABLE_PROXY || "false"
+        if (result.url.includes('kuwo') && useProxy === "true") { result.proxyUrl = proxy + result.url }
         return {
             status: 200,
             body: {

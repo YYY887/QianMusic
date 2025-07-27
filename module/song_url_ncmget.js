@@ -41,8 +41,9 @@ module.exports = async (query, request) => {
         const result = await response.json();
 
         // 代理逻辑
+        const useProxy = process.env.ENABLE_PROXY || false;
         const proxy = process.env.PROXY_URL;
-        if (proxy && result.url && result.url.includes("kuwo")) {
+        if (useProxy && result.url && result.url.includes("kuwo")) {
             result.proxyUrl = proxy + result.url.replace(/^http:\/\//, "http/");
         }
 
