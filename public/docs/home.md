@@ -1253,9 +1253,11 @@ tags: 歌单标签
 
 **必选参数 :** `id` : 音乐 id
 
-**接口地址 :** `/song/url/unblock` 或者 `/song/url/match` (为了适配SPlayer)
+**可选参数 :** `source`: 选择要解灰的音源, 目前支持`pyncmd`, `kuwo`, `kugou`, `qq`, `migu`, 选择多个音源中间用`,`分隔
 
-**调用例子 :** `/song/url/unblock?id=1969519579` 或者 `/song/url/match?id=1969519579`
+**接口地址 :** `/song/url/match`
+
+**调用例子 :** `/song/url/match?id=1969519579` `/song/url/match?id=1969519579&source=pyncmd,kuwo`
 
 ### 搜索
 

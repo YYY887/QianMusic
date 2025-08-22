@@ -23,7 +23,7 @@
       })
       const key = res.data.data.unikey
       const res2 = await axios({
-        url: `/login/qr/create?key=${key}&qrimg=true&timestamp=${Date.now()}`,
+        url: `/login/qr/create?key=${key}&qrimg=true&timestamp=${Date.now()}&ua=pc`,
       })
       document.querySelector('#qrImg').src = res2.data.data.qrimg
 
@@ -46,13 +46,13 @@
 
     async function checkStatus(key) {
       const res = await axios({
-        url: `/login/qr/check?key=${key}&timestamp=${Date.now()}`,
+        url: `/login/qr/check?key=${key}&timestamp=${Date.now()}&ua=pc`,
       })
       return res.data
     }
     async function getLoginStatus(cookie = '') {
       const res = await axios({
-        url: `/login/status?timestamp=${Date.now()}`,
+        url: `/login/status?timestamp=${Date.now()}&ua=pc`,
         method: 'post',
         data: {
           cookie,

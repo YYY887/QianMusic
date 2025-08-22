@@ -1,4 +1,4 @@
-import { banner, lyric } from 'NeteaseCloudMusicApi'
+import { banner, lyric } from '@neteaseapireborn/api'
 banner({ type: 0 }).then((res) => {
   console.log(res)
 })
