@@ -1,5 +1,6 @@
 const { default: axios } = require('axios')
 const createOption = require('../util/option.js')
+const logger = require('../util/logger.js')
 module.exports = async (query, request) => {
   let ext = 'mp3'
   // if (query.songFile.name.indexOf('flac') > -1) {
@@ -51,7 +52,7 @@ module.exports = async (query, request) => {
       maxBodyLength: Infinity,
     })
   } catch (error) {
-    console.log('error', error.response)
+    logger.info('error', error.response)
     throw error.response
   }
   return {

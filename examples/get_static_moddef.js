@@ -1,6 +1,7 @@
 const fsPromises = require('fs/promises')
 const path = require('path')
 const server = require('../server')
+const logger = require('../util/logger.js')
 
 const exportFile = path.join(__dirname, 'moddef.json')
 
@@ -16,7 +17,7 @@ async function main() {
   )
 
   fsPromises.writeFile(exportFile, JSON.stringify(def, null, 4))
-  console.log(`👍 Get your own definition at: ${exportFile}`)
+  logger.info(`👍 Get your own definition at: ${exportFile}`)
 }
 
 main()

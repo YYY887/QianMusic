@@ -2,6 +2,7 @@ const mm = require('music-metadata')
 const uploadPlugin = require('../plugins/songUpload')
 const md5 = require('md5')
 const createOption = require('../util/option.js')
+const logger = require('../util/logger.js')
 module.exports = async (query, request) => {
   let ext = 'mp3'
   // if (query.songFile.name.indexOf('flac') > -1) {
@@ -65,7 +66,7 @@ module.exports = async (query, request) => {
     }
     // if (metadata.native.ID3v1) {
     //   metadata.native.ID3v1.forEach((item) => {
-    //     // console.log(item.id, item.value)
+    //     // logger.info(item.id, item.value)
     //     if (item.id === 'title') {
     //       songName = item.value
     //     }
@@ -76,19 +77,19 @@ module.exports = async (query, request) => {
     //       album = item.value
     //     }
     //   })
-    //   // console.log({
+    //   // logger.info({
     //   //   songName,
     //   //   album,
     //   //   songName,
     //   // })
     // }
-    // console.log({
+    // logger.info({
     //   songName,
     //   album,
     //   songName,
     // })
   } catch (error) {
-    console.log(error)
+    logger.info(error)
   }
   const tokenRes = await request(
     `/api/nos/token/alloc`,
@@ -106,9 +107,9 @@ module.exports = async (query, request) => {
 
   if (res.body.needUpload) {
     const uploadInfo = await uploadPlugin(query, request)
-    // console.log('uploadInfo', uploadInfo.body.result.resourceId)
+    // logger.info('uploadInfo', uploadInfo.body.result.resourceId)
   }
-  // console.log(tokenRes.body.result)
+  // logger.info(tokenRes.body.result)
   const res2 = await request(
     `/api/upload/cloud/info/v2`,
     {
@@ -123,8 +124,8 @@ module.exports = async (query, request) => {
     },
     createOption(query),
   )
-  // console.log({ res2, privateCloud: res2.body.privateCloud })
-  // console.log(res.body.songId, 'songid')
+  // logger.info({ res2, privateCloud: res2.body.privateCloud })
+  // logger.info(res.body.songId, 'songid')
   const res3 = await request(
     `/api/cloud/pub/v2`,
     {
@@ -132,7 +133,7 @@ module.exports = async (query, request) => {
     },
     createOption(query),
   )
-  // console.log({ res3 })
+  // logger.info({ res3 })
   return {
     status: 200,
     body: {

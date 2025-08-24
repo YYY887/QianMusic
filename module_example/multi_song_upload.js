@@ -2,6 +2,7 @@ const { cloud, login_cellphone } = require('../main')
 const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs')
+const logger = require('../util/logger.js')
 
 const MUSIC_FILE_EXTENSIONS = new Set(['.mp3', '.flac'])
 
@@ -37,11 +38,11 @@ async function uploadArrayOfFile(token, arrayOfFiles) {
         cookie: token.body.cookie,
       })
     } catch (error) {
-      console.log(error)
+      logger.info(error)
       failed += 1
       failedFiles.push(file)
     }
-    console.log(`Uploaded ${k + 1}/${fileCount} songs`)
+    logger.info(`Uploaded ${k + 1}/${fileCount} songs`)
   }
   return { failedFiles, failed }
 }
@@ -86,19 +87,19 @@ async function main() {
   const files = args.file ? [args.file] : getAllMusicFiles(args.dir)
   const fileCount = files.length
 
-  console.log(`Found ${fileCount} files, uploading...`)
+  logger.info(`Found ${fileCount} files, uploading...`)
   let res = await uploadArrayOfFile(token, files)
   if (res.failed) {
-    console.log(`Failed to upload ${res.failed} songs, retrying...`)
+    logger.info(`Failed to upload ${res.failed} songs, retrying...`)
     res = await uploadArrayOfFile(token, res.failedFiles)
   }
 
-  console.log(`Uploaded ${fileCount - res.failed} songs`)
-  console.log(
+  logger.info(`Uploaded ${fileCount - res.failed} songs`)
+  logger.info(
     `Failed to upload ${res.failed} songs, you can reupload the files below`,
   )
   for (let k in res.failedFiles) {
-    console.log(res.failedFiles[k])
+    logger.info(res.failedFiles[k])
   }
 }
 main()

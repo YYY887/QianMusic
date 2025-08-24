@@ -2,7 +2,7 @@
 // 支持qq音乐、酷狗音乐、酷我音乐、咪咕音乐、第三方网易云API等等(来自GD音乐台)
 
 const createOption = require('../util/option.js')
-
+const logger = require('../util/logger.js')
 
 module.exports = async (query, request) => {
     try {
@@ -12,7 +12,7 @@ module.exports = async (query, request) => {
         const server = query.server ? query.server.split(',') : query.server
         const result = await match(query.id, !server? source : server)
         const proxy = process.env.PROXY_URL;
-        console.log("[OK] 开始解灰", query.id, result)
+        logger.info("开始解灰", query.id, result)
         const useProxy = process.env.ENABLE_PROXY || "false"
         if (result.url.includes('kuwo')) { result.proxyUrl = useProxy === 'true' ? proxy + result.url : result.url }
         return {

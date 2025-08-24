@@ -39,6 +39,7 @@
   <script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
 
   <script>
+    const logger = require('../util/logger.js')
     const app = Vue.createApp({
       data() {
         return {
@@ -61,7 +62,7 @@
               }
             })
             this.result = JSON.stringify(res.data.data)
-            console.log(res.data);
+            logger.info(res.data);
           } catch (error) {
             console.error(error)
             alert(error?.response?.data?.message || '解密失败,数据格式错误')

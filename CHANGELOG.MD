@@ -1,4 +1,7 @@
 # 更新日志
+
+## 二开作者注: 这些`commit`记录为原版网易云音乐API的记录, 本项目不会对其进行添加以及修改
+
 ### 4.25.0 | 2024.11.16
 - feat: 增加副歌时间、相关歌单推荐接口，原有相关歌单接口已废弃；fix: 将部分易盾白名单接口替换为eapi [#30](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/30)
 - fix: 播客上传接口 [#32](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/32)

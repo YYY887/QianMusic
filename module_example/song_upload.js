@@ -1,6 +1,7 @@
 const { cloud, login_cellphone } = require('../main')
 const fs = require('fs')
 const path = require('path')
+const logger = require('../util/logger.js')
 
 async function main() {
   const result = await login_cellphone({
@@ -17,7 +18,7 @@ async function main() {
       cookie: result.body.cookie,
     })
   } catch (error) {
-    console.log(error, 'error')
+    logger.info(error, 'error')
   }
 }
 main()

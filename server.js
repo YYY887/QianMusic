@@ -9,6 +9,7 @@ const cache = require('./util/apicache').middleware
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
+const logger = require('./util/logger.js')
 
 /**
  * The version check result.
@@ -237,14 +238,14 @@ async function consturctServer(moduleDefs) {
           if (ip == '::1') {
             ip = global.cnIp
           }
-          // console.log(ip)
+          // logger.info(ip)
           obj[3] = {
             ...obj[3],
             ip,
           }
           return request(...obj)
         })
-        console.log('[OK]', decode(req.originalUrl))
+        logger.info(`Request Success: ${decode(req.originalUrl)}`)
 
         if (
           (req.baseUrl === '/song/url/v1' || req.baseUrl === '/song/url') &&
@@ -254,11 +255,11 @@ async function consturctServer(moduleDefs) {
             if (song.freeTrialInfo !== null || !song.url || [1, 4].includes(song.fee)) {
               const match = require('@unblockneteasemusic/server')
               const source = process.env.UNBLOCK_SOURCE ? process.env.UNBLOCK_SOURCE.split(',') : ['pyncmd', 'kuwo', 'qq', 'migu', 'kugou']
-              console.log("开始解灰", source)
+              logger.info("开始解灰", source)
               const { url } = await match(req.query.id, source)
               song.url = url
               song.freeTrialInfo = 'null'
-              console.log("解灰成功!")
+              logger.info("解灰成功!")
           }
           if (song.url.includes('kuwo')) {
             const proxy = process.env.PROXY_URL;
@@ -285,7 +286,7 @@ async function consturctServer(moduleDefs) {
         }
         res.status(moduleResponse.status).send(moduleResponse.body)
       } catch (/** @type {*} */ moduleResponse) {
-        console.log('[ERR]', decode(req.originalUrl), {
+        logger.error(`${decode(req.originalUrl)}`, {
           status: moduleResponse.status,
           body: moduleResponse.body,
         })
@@ -324,7 +325,7 @@ async function serveNcmApi(options) {
     options.checkVersion &&
     checkVersion().then(({ npmVersion, ourVersion, status }) => {
       if (status == VERSION_CHECK_RESULT.NOT_LATEST) {
-        console.log(
+        logger.info(
           `最新版本: ${npmVersion}, 当前版本: ${ourVersion}, 请及时更新`,
         )
       }
@@ -339,9 +340,25 @@ async function serveNcmApi(options) {
   /** @type {import('express').Express & ExpressExtension} */
   const appExt = app
   appExt.server = app.listen(port, host, () => {
-    console.log(`server running @ http://${host ? host : 'localhost'}:${port}`)
+    console.log(`
+   _   _  _____ __  __           _    ____ ___ 
+  | \\ | |/ ____|  \\/  |     /\\   | |  |  _ \\_ |
+  |  \\| | |    | \\  / |    /  \\  | |  | |_) | |
+  | . \` | |    | |\\/| |   / /\\ \\ | |  |  __/| |
+  | |\\  | |____| |  | |  / ____ \\| |__| |   | |
+  |_| \\_|\\_____|_|  |_| /_/    \\_\\____|_|   |_|
+    `)
+    console.log(`
+    ╔═╗╔═╗╦    ╔═╗╔╗╔╦ ╦╔═╗╔╗╔╔═╗╔═╗╔╦╗
+    ╠═╣╠═╝║    ║╣ ║║║╠═╣╠═╣║║║║  ║╣  ║║
+    ╩ ╩╩  ╩═╝  ╚═╝╝╚╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝═╩╝
+    `)
+    logger.info(`
+- Server started successfully @ http://${host ? host : 'localhost'}:${port}
+- Environment: ${process.env.NODE_ENV || 'development'}
+- Node Version: ${process.version}
+- Process ID: ${process.pid}`)
   })
-
   return appExt
 }
 

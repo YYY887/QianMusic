@@ -1,4 +1,4 @@
-# 网易云音乐 API Enhanced(Reborn)
+# 网易云音乐 API Enhanced
 
 ---
 
@@ -34,15 +34,17 @@ set PORT=4000 && node app.js  # Windows
 
 ### 重要提示
 
-- 调用前请务必阅读文档的“调用前须知”部分。
+- 调用前请务必阅读文档的 [调用前须知](https://music-api.focalors.ltd/#/?id=%e8%b0%83%e7%94%a8%e5%89%8d%e9%a1%bb%e7%9f%a5) 部分。
 - 推荐将敏感信息（如 cookie）通过部署平台的环境变量进行配置。
 
 ## 在线体验与文档
 
-- [在线文档](https://music-api.focalors.ltd/docs/#)
+- [在线文档](https://music-api.focalors.ltd/)
 - [NPM 包地址](https://www.npmjs.com/package/@neteaseapireborn/api)
 
 ## 常见部署方式
+
+- 推荐参考[在线文档](https://music-api.focalors.ltd/)
 
 ### Vercel 一键部署
 
@@ -114,4 +116,3 @@ pnpm test
 ## License
 
 [MIT License](https://github.com/IamFurina/NeteaseCloudMusicApiReborn/blob/main/LICENSE)
-console.log(error)

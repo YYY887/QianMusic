@@ -1,5 +1,6 @@
 var url = require('url')
 var MemoryCache = require('./memory-cache')
+const logger = require('./logger.js')
 
 var t = {
   ms: 1,
@@ -349,7 +350,7 @@ function ApiCache() {
           try {
             redis.del(key)
           } catch (err) {
-            console.log('[apicache] error in redis.del("' + key + '")')
+            logger.info('[apicache] error in redis.del("' + key + '")')
           }
         }
         index.all = index.all.filter(doesntMatch(key))
@@ -373,7 +374,7 @@ function ApiCache() {
         try {
           redis.del(target)
         } catch (err) {
-          console.log('[apicache] error in redis.del("' + target + '")')
+          logger.info('[apicache] error in redis.del("' + target + '")')
         }
       }
 
@@ -404,7 +405,7 @@ function ApiCache() {
           try {
             redis.del(key)
           } catch (err) {
-            console.log('[apicache] error in redis.del("' + key + '")')
+            logger.info('[apicache] error in redis.del("' + key + '")')
           }
         })
       }

@@ -15,6 +15,7 @@ const anonymous_token = fs.readFileSync(
 )
 const { URLSearchParams, URL } = require('url')
 const { APP_CONF } = require('../util/config.json')
+const logger = require('./logger.js')
 // request.debug = true // 开启可看到更详细信息
 
 const WNMCID = (function () {
@@ -76,7 +77,7 @@ const createRequest = (uri, data, options) => {
   return new Promise((resolve, reject) => {
     let headers = options.headers || {}
     let ip = options.realIP || options.ip || ''
-    // console.log(ip)
+    // logger.info(ip)
     if (ip) {
       headers['X-Real-IP'] = ip
       headers['X-Forwarded-For'] = ip
@@ -201,11 +202,11 @@ const createRequest = (uri, data, options) => {
 
       default:
         // 未知的加密方式
-        console.log('[ERR]', 'Unknown Crypto:', crypto)
+        logger.info('[ERR]', 'Unknown Crypto:', crypto)
         break
     }
     const answer = { status: 500, body: {}, cookie: [] }
-    // console.log(headers, 'headers')
+    // logger.info(headers, 'headers')
     let settings = {
       method: 'POST',
       url: url,
@@ -282,7 +283,7 @@ const createRequest = (uri, data, options) => {
             answer.status = 200
           }
         } catch (e) {
-          // console.log(e)
+          // logger.info(e)
           // can't decrypt and can't parse directly
           answer.body = body
           answer.status = res.status

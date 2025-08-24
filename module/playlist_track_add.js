@@ -1,4 +1,5 @@
 const createOption = require('../util/option.js')
+const logger = require('../util/logger.js')
 module.exports = async (query, request) => {
   query.ids = query.ids || ''
   const data = {
@@ -9,7 +10,7 @@ module.exports = async (query, request) => {
       }),
     ),
   }
-  console.log(data)
+  logger.info(data)
 
   return request(`/api/playlist/track/add`, data, createOption(query, 'weapi'))
 }

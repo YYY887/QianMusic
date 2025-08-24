@@ -3,6 +3,7 @@
 // 而是采用 standard, exhigh, lossless, hires, jyeffect(高清环绕声), sky(沉浸环绕声), jymaster(超清母带) 进行音质判断
 // 当unblock为true时, 会尝试使用unblockneteasemusic进行解锁, 同时音质设置不会生效, 但仍然为必须传入参数
 
+const logger = require('../util/logger.js')
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const match = require('@unblockneteasemusic/server')
@@ -16,7 +17,7 @@ module.exports = async (query, request) => {
   if (query.unblock === 'true') {
     try {
       const result = await match(query.id, source)
-      console.log('[OK] 开始解灰', query.id, result)
+      logger.info('开始解灰', query.id, result)
       if (result.url.includes('kuwo')) {
         const useProxy = process.env.ENABLE_PROXY || 'false'
         var proxyUrl = useProxy === 'true' ? process.env.PROXY_URL + result.url : result.url
