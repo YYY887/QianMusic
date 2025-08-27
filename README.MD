@@ -99,6 +99,7 @@ pnpm test
 - 歌曲、专辑、歌手、MV、歌词、评论、排行榜
 - 搜索、推荐、私人 FM、签到、云盘
 - 歌曲解锁（解灰）、多音源支持（qq/kuwo/kugou/migu/pyncmd）
+> 注意: 如果解灰出现问题, 本项目只是集成[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)的接口, 请在对应的仓库开启议题
 - 详细接口请见[在线文档](https://music-api.focalors.ltd/)
 
 ## 贡献与社区

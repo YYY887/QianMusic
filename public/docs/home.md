@@ -10,6 +10,8 @@
 
 [sqaiyan/netmusic-node](https://github.com/sqaiyan/netmusic-node)
 
+[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)
+
 ## 工作原理
 
 跨站请求伪造 (CSRF), 伪造请求头 , 调用官方 API
@@ -1243,6 +1245,8 @@ tags: 歌单标签
 
 说明：`杜比全景声`音质需要设备支持，不同的设备可能会返回不同码率的 url。cookie 需要传入`os=pc`保证返回正常码率的 url。
 
+注意: 如果解灰出现问题, 本项目只是集成[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)的接口, 请在对应的仓库开启议题
+
 ### 音乐是否可用
 
 说明: 调用此接口,传入歌曲 id, 可获取音乐是否可用,返回 `{ success: true, message: 'ok' }` 或者 `{ success: false, message: '亲爱的,暂无版权' }`
@@ -1266,6 +1270,8 @@ tags: 歌单标签
 **接口地址 :** `/song/url/match`
 
 **调用例子 :** `/song/url/match?id=1969519579` `/song/url/match?id=1969519579&source=pyncmd,kuwo`
+
+注意: 如果解灰出现问题, 本项目只是集成[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)的接口, 请在对应的仓库开启议题
 
 ### 搜索
 
