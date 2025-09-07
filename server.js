@@ -146,16 +146,11 @@ async function consturctServer(moduleDefs) {
    * CORS & Preflight request
    */
   app.use((req, res, next) => {
-    // 强制设置 Access-Control-Allow-Credentials: true
     if (req.path !== '/' && !req.path.includes('.')) {
-      let allowOrigin = CORS_ALLOW_ORIGIN || req.headers.origin
-      // 禁止为 *，必须为具体域名
-      if (!allowOrigin || allowOrigin === '*') {
-        allowOrigin = req.headers.origin || ''
-      }
       res.set({
         'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': allowOrigin,
+        'Access-Control-Allow-Origin':
+          CORS_ALLOW_ORIGIN || req.headers.origin || '*',
         'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
         'Content-Type': 'application/json; charset=utf-8',
@@ -232,8 +227,8 @@ async function consturctServer(moduleDefs) {
           const obj = [...params]
           let ip = req.ip
 
-          if (ip.substr(0, 7) == '::ffff:') {
-            ip = ip.substr(7)
+          if (ip.substring(0, 7) == '::ffff:') {
+            ip = ip.substring(7)
           }
           if (ip == '::1') {
             ip = global.cnIp
@@ -359,6 +354,7 @@ async function serveNcmApi(options) {
 - Node Version: ${process.version}
 - Process ID: ${process.pid}`)
   })
+
   return appExt
 }
 
