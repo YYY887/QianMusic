@@ -8,7 +8,7 @@ module.exports = async (query, request) => {
     try {
         const match = require("@unblockneteasemusic/server")
         const source = query.source
-            ? query.source.split(',') : ['pyncmd', 'kuwo', 'qq', 'migu', 'kugou']
+            ? query.source.split(',') : ['pyncmd', 'bodian', 'kuwo', 'qq', 'migu', 'kugou']
         const server = query.server ? query.server.split(',') : query.server
         const result = await match(query.id, !server? source : server)
         const proxy = process.env.PROXY_URL;

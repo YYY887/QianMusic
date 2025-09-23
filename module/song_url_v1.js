@@ -7,7 +7,7 @@ const logger = require('../util/logger.js')
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const match = require('@unblockneteasemusic/server')
-  const source = ['pyncmd','kuwo', 'qq', 'migu', 'kugou']
+  const source = ['pyncmd', 'bodian', 'kuwo', 'qq', 'migu', 'kugou']
   require('dotenv').config()
   const data = {
     ids: '[' + query.id + ']',
