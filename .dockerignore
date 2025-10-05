@@ -12,3 +12,4 @@
 !/generateConfig.js
 !/main.js
 !/data
+!/.env
