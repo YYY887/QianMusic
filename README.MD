@@ -76,23 +76,20 @@ docker run -d \
 
 运行后访问 http://localhost:3000 即可使用 API。
 
-### 3. 环境变量（可选）
-|变量名	| 默认值 |	说明|
-|---|---|---|
-|PORT |	3000	| 服务运行端口|
-|API_KEY	 | 无 |	若开启鉴权，可配置访问密钥|
-|DEBUG |	 false | 	输出详细日志|
+### 3. 环境变量
 
-示例：
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| **CORS_ALLOW_ORIGIN** | `*` | 允许跨域请求的域名。若需要限制，请指定具体域名（例如 `https://example.com`）。 |
+| **ENABLE_PROXY** | `false` | 是否启用反向代理功能。 |
+| **PROXY_URL** | `https://your-proxy-url.com/?proxy=` | 代理服务地址。仅当 `ENABLE_PROXY=true` 时生效。 |
+| **ENABLE_GENERAL_UNBLOCK** | `true` | 是否启用全局解灰（推荐开启）。开启后所有歌曲都尝试自动解锁。 |
+| **ENABLE_FLAC** | `true` | 是否启用无损音质（FLAC）。 |
+| **SELECT_MAX_BR** | `false` | 启用无损音质时，是否选择最高码率音质。 |
+| **UNBLOCK_SOURCE** | `pyncmd,qq,bodian,migu,kugou,kuwo` | 音源优先级列表（多个音源以逗号分隔）。 |
+| **FOLLOW_SOURCE_ORDER** | `true` | 是否严格按照音源列表顺序进行匹配。 |
 
-```bash
-docker run -d \
-  --name ncm-api \
-  -e PORT=8080 \
-  -e DEBUG=true \
-  -p 8080:8080 \
-  moefurina/ncm-api:latest
-```
+---
 
 ### 4. 更新镜像
 
