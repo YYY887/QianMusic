@@ -41,10 +41,67 @@ set PORT=4000 && node app.js  # Windows
 
 - [在线文档](https://neteasecloudmusicapienhanced.js.org/)
 - [NPM 包地址](https://www.npmjs.com/package/@neteaseapireborn/api)
+- [Dockerhub 主页](https://hub.docker.com/repository/docker/moefurina/ncm-api/)
 
 ## 常见部署方式
 
 - 推荐参考[在线文档](https://neteasecloudmusicapienhanced.js.org/)
+
+## Docker 部署说明
+
+本项目支持通过 Docker 一键部署，无需手动安装 Node.js 或依赖。
+
+### 1. 拉取镜像
+
+从 Docker Hub 拉取最新版本镜像：
+
+```bash
+docker pull moefurina/ncm-api:latest
+```
+或指定版本（与 package.json 中版本号一致）：
+
+```bash
+docker pull moefurina/ncm-api:4.29.0
+
+```
+
+### 2. 运行容器
+```bash
+docker run -d \
+  --name ncm-api \
+  -p 3000:3000 \
+  moefurina/ncm-api:latest
+```
+
+
+运行后访问 http://localhost:3000 即可使用 API。
+
+### 3. 环境变量（可选）
+变量名	| 默认值 |	说明
+PORT |	3000	| 服务运行端口
+API_KEY	 | 无 |	若开启鉴权，可配置访问密钥
+DEBUG |	 false | 	输出详细日志
+
+示例：
+
+```bash
+docker run -d \
+  --name ncm-api \
+  -e PORT=8080 \
+  -e DEBUG=true \
+  -p 8080:8080 \
+  moefurina/ncm-api:latest
+```
+
+### 4. 更新镜像
+
+更新到最新版本：
+
+```bash
+docker pull moefurina/ncm-api:latest
+docker stop ncm-api && docker rm ncm-api
+docker run -d -p 3000:3000 moefurina/ncm-api:latest
+```
 
 ### Vercel 一键部署
 
