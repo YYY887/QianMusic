@@ -1,7 +1,7 @@
 const createOption = (query, crypto = '') => {
   return {
     crypto: query.crypto || crypto || '',
-    cookie: query.cookie,
+    cookie: query.cookie || process.env.NETEASE_COOKIE,
     ua: query.ua || '',
     proxy: query.proxy,
     realIP: query.realIP,

@@ -3,6 +3,7 @@
       "target": "ES2015",
       "module": "commonjs",
       "experimentalDecorators": true,
+      "ignoreDeprecations": "6.0",
       "moduleResolution": "node",
       "lib": [
         "esnext",

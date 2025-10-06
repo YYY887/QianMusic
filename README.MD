@@ -41,7 +41,7 @@ set PORT=4000 && node app.js  # Windows
 
 - [在线文档](https://neteasecloudmusicapienhanced.js.org/)
 - [NPM 包地址](https://www.npmjs.com/package/@neteaseapireborn/api)
-- [Dockerhub 主页](https://hub.docker.com/repository/docker/moefurina/ncm-api/)
+- [Dockerhub 主页](https://hub.docker.com/r/moefurina/ncm-api)
 
 ## 常见部署方式
 
