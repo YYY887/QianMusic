@@ -6,6 +6,10 @@ on:
     tags: ["v*"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -25,6 +29,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -33,4 +44,6 @@ jobs:
           tags: |
             moefurina/ncm-api:latest
             moefurina/ncm-api:${{ env.VERSION }}
+            ghcr.io/moefurina/ncm-api:latest
+            ghcr.io/moefurina/ncm-api:${{ env.VERSION }}
           platforms: linux/amd64
