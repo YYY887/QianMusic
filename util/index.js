@@ -1,3 +1,4 @@
+const logger = require('./logger')
 // 预先定义常量和函数引用
 const chinaIPPrefixes = [
   '116.25',
@@ -80,7 +81,9 @@ module.exports = {
   generateRandomChineseIP() {
     // 优化：使用预绑定的函数和常量
     const randomPrefix = chinaIPPrefixes[floor(random() * prefixesLength)]
-    return `${randomPrefix}.${generateIPSegment()}.${generateIPSegment()}`
+    const returns = `${randomPrefix}.${generateIPSegment()}.${generateIPSegment()}`
+    logger.info('Generated Random Chinese IP:', returns)
+    return returns
   },
   // 生成chainId的函数
   generateChainId(cookie) {

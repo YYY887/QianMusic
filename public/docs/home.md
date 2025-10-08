@@ -75,6 +75,8 @@ npx @neteaseapireborn/api@latest
 
 v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需要自己的服务器(访问 Vercel 部署的接口,需要额外加一个 realIP 参数,如 `/song/url?id=1969519579&realIP=116.25.146.177`)
 
+v4.29.9 加入了生成随机中国 IP 功能, 在请求时加上 `randomCNIP=true` 即可使用随机中国 IP, 如 `/song/url?id=1969519579&randomCNIP=true`
+
 不能正常访问的,绑定下国内备案过的域名,之后即可正常访问
 
 ### 操作方法
@@ -229,6 +231,8 @@ $ sudo docker run -d -p 3000:3000 netease-music-api
 
 !> 由于网易限制,此项目在国外服务器或部分国内云服务上使用会受到限制,如 `460 cheating异常`,如需解决 , 可使用`realIP`参数,传进国内 IP 解决,如:`?realIP=116.25.146.177`
 即可解决
+
+!> 接上, v4.29.9 加入了生成随机中国 IP 功能, 在请求时加上 `randomCNIP=true` 即可使用随机中国 IP, 如 `/song/url?id=1969519579&randomCNIP=true`
 
 !> 图片加上 `?param=宽y高` 可控制图片尺寸，如 `http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200`, `http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=50y50`
 

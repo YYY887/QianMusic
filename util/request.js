@@ -3,6 +3,7 @@ const encrypt = require('./crypto')
 const CryptoJS = require('crypto-js')
 const { default: axios } = require('axios')
 const { PacProxyAgent } = require('pac-proxy-agent')
+const logger = require('./logger')
 const http = require('http')
 const https = require('https')
 const tunnel = require('tunnel')
@@ -160,8 +161,7 @@ const createRequest = (uri, data, options) => {
   return new Promise((resolve, reject) => {
     // 变量声明和初始化
     const headers = options.headers ? { ...options.headers } : {}
-    const ip = options.realIP || options.ip || ''
-
+    const ip = options.realIP || options.ip || (options.randomCNIP ? generateRandomChineseIP() : '')
     // IP头设置
     if (ip) {
       headers['X-Real-IP'] = ip
@@ -255,10 +255,10 @@ const createRequest = (uri, data, options) => {
         break
 
       default:
-        console.log('[ERR]', 'Unknown Crypto:', crypto)
+        logger.error('Unknown Crypto:', crypto)
         break
     }
-    // console.log(url);
+    // logger.info(url);
     // settings创建
     let settings = {
       method: 'POST',
@@ -300,16 +300,16 @@ const createRequest = (uri, data, options) => {
             settings.httpAgent = agent
             settings.proxy = false
           } else {
-            console.error('代理配置无效,不使用代理')
+            logger.error('代理配置无效,不使用代理')
           }
         } catch (e) {
-          console.error('代理URL解析失败:', e.message)
+          logger.error('代理URL解析失败:', e.message)
         }
       }
     } else {
       settings.proxy = false
     }
-    // console.log(settings.headers);
+    // logger.info(settings.headers);
     axios(settings)
       .then((res) => {
         const body = res.data
@@ -348,14 +348,14 @@ const createRequest = (uri, data, options) => {
         if (answer.status === 200) {
           resolve(answer)
         } else {
-          console.log('[ERR]', answer)
+          logger.error(answer)
           reject(answer)
         }
       })
       .catch((err) => {
         answer.status = 502
         answer.body = { code: 502, msg: err.message || err }
-        console.log('[ERR]', answer)
+        logger.error(answer)
         reject(answer)
       })
   })

@@ -99,7 +99,7 @@ async function getModulesDefinitions(
  */
 async function checkVersion() {
   return new Promise((resolve) => {
-    exec('npm info NeteaseCloudMusicApi version', (err, stdout) => {
+    exec('npm info NeteaseCloudMusicApiEnhanced version', (err, stdout) => {
       if (!err) {
         let version = stdout.trim()
 
