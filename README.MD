@@ -40,7 +40,7 @@ set PORT=4000 && node app.js  # Windows
 ## 在线体验与文档
 
 - [在线文档](https://neteasecloudmusicapienhanced.js.org/)
-- [NPM 包地址](https://www.npmjs.com/package/@neteaseapireborn/api)
+- [NPM 包地址](https://www.npmjs.com/package/@neteasecloudmusicapienhanced/api)
 - [Dockerhub 主页](https://hub.docker.com/r/moefurina/ncm-api)
 
 ## 常见部署方式
@@ -58,6 +58,7 @@ set PORT=4000 && node app.js  # Windows
 ```bash
 docker pull moefurina/ncm-api:latest
 ```
+
 或指定版本（与 package.json 中版本号一致）：
 
 ```bash
@@ -66,6 +67,7 @@ docker pull moefurina/ncm-api:4.29.0
 ```
 
 ### 2. 运行容器
+
 ```bash
 docker run -d \
   --name ncm-api \
@@ -73,21 +75,20 @@ docker run -d \
   moefurina/ncm-api:latest
 ```
 
-
 运行后访问 http://localhost:3000 即可使用 API。
 
 ### 3. 环境变量
 
-| 变量名 | 默认值 | 说明 |
-|--------|--------|------|
-| **CORS_ALLOW_ORIGIN** | `*` | 允许跨域请求的域名。若需要限制，请指定具体域名（例如 `https://example.com`）。 |
-| **ENABLE_PROXY** | `false` | 是否启用反向代理功能。 |
-| **PROXY_URL** | `https://your-proxy-url.com/?proxy=` | 代理服务地址。仅当 `ENABLE_PROXY=true` 时生效。 |
-| **ENABLE_GENERAL_UNBLOCK** | `true` | 是否启用全局解灰（推荐开启）。开启后所有歌曲都尝试自动解锁。 |
-| **ENABLE_FLAC** | `true` | 是否启用无损音质（FLAC）。 |
-| **SELECT_MAX_BR** | `false` | 启用无损音质时，是否选择最高码率音质。 |
-| **UNBLOCK_SOURCE** | `pyncmd,qq,bodian,migu,kugou,kuwo` | 音源优先级列表（多个音源以逗号分隔）。 |
-| **FOLLOW_SOURCE_ORDER** | `true` | 是否严格按照音源列表顺序进行匹配。 |
+| 变量名                     | 默认值                               | 说明                                                                           |
+| -------------------------- | ------------------------------------ | ------------------------------------------------------------------------------ |
+| **CORS_ALLOW_ORIGIN**      | `*`                                  | 允许跨域请求的域名。若需要限制，请指定具体域名（例如 `https://example.com`）。 |
+| **ENABLE_PROXY**           | `false`                              | 是否启用反向代理功能。                                                         |
+| **PROXY_URL**              | `https://your-proxy-url.com/?proxy=` | 代理服务地址。仅当 `ENABLE_PROXY=true` 时生效。                                |
+| **ENABLE_GENERAL_UNBLOCK** | `true`                               | 是否启用全局解灰（推荐开启）。开启后所有歌曲都尝试自动解锁。                   |
+| **ENABLE_FLAC**            | `true`                               | 是否启用无损音质（FLAC）。                                                     |
+| **SELECT_MAX_BR**          | `false`                              | 启用无损音质时，是否选择最高码率音质。                                         |
+| **UNBLOCK_SOURCE**         | `pyncmd,qq,bodian,migu,kugou,kuwo`   | 音源优先级列表（多个音源以逗号分隔）。                                         |
+| **FOLLOW_SOURCE_ORDER**    | `true`                               | 是否严格按照音源列表顺序进行匹配。                                             |
 
 ---
 
@@ -124,7 +125,10 @@ docker run -d -p 3000:3000 moefurina/ncm-api:latest
 支持直接在 Node.js 项目中引入和调用，返回 Promise：
 
 ```js
-const { login_cellphone, user_cloud } = require('@neteaseapireborn/api')
+const {
+  login_cellphone,
+  user_cloud,
+} = require('@neteasecloudmusicapienhanced/api')
 async function main() {
   const result = await login_cellphone({ phone: '手机号', password: '密码' })
   console.log(result)
@@ -137,7 +141,7 @@ main()
 ## TypeScript 支持
 
 ```ts
-import { banner } from '@neteaseapireborn/api'
+import { banner } from '@neteasecloudmusicapienhanced/api'
 banner({ type: 0 }).then((res) => console.log(res))
 ```
 
@@ -154,7 +158,7 @@ pnpm test
 - 歌曲、专辑、歌手、MV、歌词、评论、排行榜
 - 搜索、推荐、私人 FM、签到、云盘
 - 歌曲解锁（解灰）、多音源支持（qq/bodian/kuwo/kugou/migu/pyncmd）
-> 注意: 如果解灰出现问题, 本项目只是集成[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)的接口, 请在对应的仓库开启议题
+  > 注意: 如果解灰出现问题, 本项目只是集成[UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)的接口, 请在对应的仓库开启议题
 - 详细接口请见[在线文档](https://neteasecloudmusicapienhanced.js.org/)
 
 ## 贡献与社区

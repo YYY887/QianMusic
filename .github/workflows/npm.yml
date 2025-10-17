@@ -32,10 +32,6 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
-      - name: Update package name for GitHub Packages
-        run: |
-          json=`cat package.json`
-          echo "$json" | jq '.name = "@neteasecloudmusicapienhanced/api"' > package.json
       - name: Publish to GitHub Packages
         run: npm publish --access public
         env:

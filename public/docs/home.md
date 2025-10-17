@@ -59,13 +59,13 @@ $ set HOST=127.0.0.1 && node app.js
 支持 npx 方式运行,会自动安装依赖和运行
 
 ```
-npx @neteaseapireborn/api@版本号
+npx @neteasecloudmusicapienhanced/api@版本号
 ```
 
 或者运行
 
 ```
-npx @neteaseapireborn/api@latest
+npx @neteasecloudmusicapienhanced/api@latest
 
 ```
 
@@ -135,7 +135,10 @@ v3.3.0 后支持使用 PAC 代理,如 `?proxy=http://192.168.0.1/proxy.pac`
 v3.31.0 后支持 Node.js 调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
 
 ```js
-const { login_cellphone, user_cloud } = require('@neteaseapireborn/api')
+const {
+  login_cellphone,
+  user_cloud,
+} = require('@neteasecloudmusicapienhanced/api')
 async function main() {
   try {
     const result = await login_cellphone({
@@ -158,7 +161,7 @@ main()
 
 ```ts
 // test.ts
-import { banner } from '@neteaseapireborn/api'
+import { banner } from '@neteasecloudmusicapienhanced/api'
 banner({ type: 0 }).then((res) => {
   console.log(res)
 })
@@ -3989,7 +3992,6 @@ ONLINE 已发布
 **可选参数**
 
 - 状态（非必填）：
-
   - `displayStatus: null`（默认）：返回所有状态的声音
   - `displayStatus: "ONLINE"`：已发布的声音
   - `displayStatus: "AUDITING"`：审核中的声音
@@ -4002,19 +4004,16 @@ ONLINE 已发布
 - `limit: 20`：每次返回的声音数量（最多 200 个）
 
 - 搜索关键词：
-
   - `name: null`：返回所有的声音
   - `name: [关键词]`：返回包含指定关键词的声音文件
 
 - `offset: 0`：偏移量，用于分页，默认为 0，表示从第一个声音开始获取
 
 - 博客：
-
   - `radioId: null`：返回所有电台的声音
   - `radioId: [播客id]`：返回特定播客的声音
 
 - 是否公开：
-
   - `type: null`：返回所有类型的声音
   - `type: "PUBLIC"`：返回公开的声音
   - `type: "PRIVATE"`：返回隐私的声音
