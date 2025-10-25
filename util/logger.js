@@ -25,5 +25,4 @@ const logger = {
     critical: (msg, ...args) => console.error(`${colors.bright}${colors.bgRed}[CRITICAL]${colors.reset}`, msg, ...args)
 };
 
-// 导出logger
 module.exports = logger;
