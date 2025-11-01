@@ -24,10 +24,8 @@ jobs:
           # Use built-in package manager cache for pnpm
           cache: 'pnpm'
           cache-dependency-path: '**/pnpm-lock.yaml'
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies (pnpm)
         run: pnpm install --frozen-lockfile
       - name: Test
@@ -50,10 +48,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
           cache-dependency-path: '**/pnpm-lock.yaml'
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies (pnpm)
         run: pnpm install --frozen-lockfile
       - name: Lint
