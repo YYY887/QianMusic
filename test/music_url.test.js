@@ -4,7 +4,7 @@ const host = global.host || 'http://localhost:3000'
 describe('测试获取歌曲是否正常', () => {
   it('歌曲的 url 不应该为空', (done) => {
     const qs = {
-      id: 1969519579,
+      id: 2756058128,
       br: 999000,
       realIP: global.cnIp,
     }
