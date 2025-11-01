@@ -101,7 +101,7 @@ const SPECIAL_STATUS_CODES = new Set([201, 302, 400, 502, 800, 801, 802, 803])
 
 // chooseUserAgent函数
 const chooseUserAgent = (crypto, uaType = 'pc') => {
-  return userAgentMap[crypto]?.[uaType] || ''
+  return (userAgentMap[crypto] && userAgentMap[crypto][uaType]) || ''
 }
 
 // cookie处理
@@ -153,15 +153,17 @@ const createHeaderCookie = (header) => {
 const generateRequestId = () => {
   return `${now()}_${floor(random() * 1000)
     .toString()
-    .padStart(4, "0")}`;
-
+    .padStart(4, '0')}`
 }
 
 const createRequest = (uri, data, options) => {
   return new Promise((resolve, reject) => {
     // 变量声明和初始化
     const headers = options.headers ? { ...options.headers } : {}
-    const ip = options.realIP || options.ip || (options.randomCNIP ? generateRandomChineseIP() : '')
+    const ip =
+      options.realIP ||
+      options.ip ||
+      (options.randomCNIP ? generateRandomChineseIP() : '')
     // IP头设置
     if (ip) {
       headers['X-Real-IP'] = ip
@@ -243,8 +245,8 @@ const createRequest = (uri, data, options) => {
             options.e_r !== undefined
               ? options.e_r
               : data.e_r !== undefined
-              ? data.e_r
-              : ENCRYPT_RESPONSE,
+                ? data.e_r
+                : ENCRYPT_RESPONSE,
           )
           encryptData = encrypt.eapi(uri, data)
           url = API_DOMAIN + '/eapi/' + uri.substr(5)
