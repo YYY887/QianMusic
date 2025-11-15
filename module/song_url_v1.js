@@ -17,7 +17,7 @@ module.exports = async (query, request) => {
   if (query.unblock === 'true') {
     try {
       const result = await match(query.id, source)
-      logger.info('开始解灰', query.id, result)
+      logger.info('Starting unblock(uses modules unblock):', query.id, result)
       // avoid optional chaining for compatibility
       let url
       if (Array.isArray(result)) {

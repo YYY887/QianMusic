@@ -235,7 +235,7 @@ async function consturctServer(moduleDefs) {
           if (ip == '::1') {
             ip = global.cnIp
           }
-          // logger.info(ip)
+          logger.info('Requested from ip:', ip)
           obj[3] = {
             ...obj[3],
             ip,
@@ -258,11 +258,11 @@ async function consturctServer(moduleDefs) {
             const source = process.env.UNBLOCK_SOURCE
               ? process.env.UNBLOCK_SOURCE.split(',')
               : ['pyncmd', 'bodian', 'kuwo', 'qq', 'migu', 'kugou']
-            logger.info('Starting unblock:', source)
+            logger.info('Starting unblock(uses general unblock):', source)
             const { url } = await match(req.query.id, source)
             song.url = url
             song.freeTrialInfo = 'null'
-            logger.info('Unblock success!')
+            logger.info('Unblock success! url:', song.url)
           }
           if (song.url && song.url.includes('kuwo')) {
             const proxy = process.env.PROXY_URL

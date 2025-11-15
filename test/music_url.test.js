@@ -6,8 +6,8 @@ describe('测试获取歌曲是否正常', () => {
     const qs = {
       id: 2709812973,
       level: 'exhigh',
-      realip: '125.88.253.199',
-      // realIP: global.cnIp,
+      //realip: '125.88.253.199',
+      realIP: global.cnIp,
     }
 
     axios
