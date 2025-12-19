@@ -18,7 +18,7 @@ module.exports = async (query, request) => {
   let result = await request(
     `/api/w/login/cellphone`,
     data,
-    createOption(query, "weapi"),
+    createOption(query, 'weapi'),
   )
 
   if (result.body.code === 200) {
