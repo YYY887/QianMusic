@@ -1,5 +1,3 @@
----
-
 # QianMusic
 <div align="center">
     <img src="https://love.mytx.fun/854424096132435968.png" width="120" alt="QianMusic Logo"/>
@@ -138,6 +136,15 @@ npm run test
 
 ---
 
+## ❤️ 支持与赞赏
+如果 QianMusic 对你有帮助，欢迎赞赏支持开发者持续维护～  
+<div align="center">
+    <img src="https://love.mytx.fun/854498640478212096.png" width="300" alt="赞赏码"/>
+    <p>您的支持是项目持续更新的动力 ✨</p>
+</div>
+
+---
+
 <div align="center">
     <p>🎶 聆听美好，从 QianMusic 开始 🎶</p>
     <p>基于网易云音乐API增强版构建 | 版本：v4.29.20</p>
@@ -149,5 +156,3 @@ npm run test
 1. 服务器部署需开放7749端口（安全组/防火墙），否则无法访问；
 2. 若接口请求失败，可检查网络代理或修改`axios`代理配置（项目根目录`.env`文件）；
 3. 可执行包由`pkg`构建，部分Linux系统需安装`libc6-compat`依赖（`apt install libc6-compat`）。
-
----
