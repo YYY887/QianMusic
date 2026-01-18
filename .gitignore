@@ -10,3 +10,21 @@ anonymous_token
 .vercel
 .env
 IFLOW.md
+# 忽略音频大文件（核心，解决你的根源）
+*.mp3
+*.wav
+*.flac
+*.m4a
+
+# 忽略图片/视频大文件
+*.png *.jpg *.jpeg *.gif *.svg
+*.mp4 *.avi *.mov
+
+# 前端/后端通用忽略目录（项目无关文件，不用提交）
+node_modules/
+dist/
+build/
+out/
+target/
+*.log
+
