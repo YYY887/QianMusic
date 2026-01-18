@@ -141,7 +141,15 @@ async function consturctServer(moduleDefs) {
   /**
    * Serving static files
    */
-  app.use(express.static(path.join(__dirname, 'public')))
+  // 提供前端静态文件（dist 目录）- 优先级最高
+  const distPath = path.join(__dirname, 'dist')
+  if (fs.existsSync(distPath)) {
+    app.use(express.static(distPath))
+  }
+  
+  // 后端 API 文档和其他静态文件
+  app.use('/docs', express.static(path.join(__dirname, 'public')))
+  
   /**
    * CORS & Preflight request
    */
@@ -313,6 +321,26 @@ async function consturctServer(moduleDefs) {
     })
   }
 
+  // SPA 前端路由支持 - 只在 404 时返回 index.html
+  const distIndexPath = path.join(__dirname, 'dist', 'index.html')
+  if (fs.existsSync(distIndexPath)) {
+    app.use((req, res, next) => {
+      // 只处理 GET 请求且不包含文件扩展名的路径
+      if (req.method === 'GET' && !req.path.includes('.')) {
+        // 检查是否是前端路由（通常是 /login, /discover 等）
+        const frontendRoutes = ['/', '/login', '/discover', '/search', '/playlist', '/playing', '/profile', '/my-liked-songs', '/my-playlists', '/highquality', '/artists', '/artist']
+        const isFrontendRoute = frontendRoutes.some(route => 
+          req.path === route || req.path.startsWith(route + '/')
+        )
+        
+        if (isFrontendRoute) {
+          return res.sendFile(distIndexPath)
+        }
+      }
+      next()
+    })
+  }
+
   return app
 }
 
@@ -321,8 +349,8 @@ async function consturctServer(moduleDefs) {
  * @param {NcmApiOptions} options
  * @returns {Promise<import('express').Express & ExpressExtension>}
  */
-async function serveNcmApi(options) {
-  const port = Number(options.port || process.env.PORT || '3000')
+async function serveNcmApi(options) { 
+  const port = Number(options.port || process.env.PORT || '7749')
   const host = options.host || process.env.HOST || ''
 
   const checkVersionSubmission =

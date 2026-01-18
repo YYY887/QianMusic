@@ -4,6 +4,7 @@
 !/public
 !/static
 !/util
+!/dist
 !/app.js
 !/server.js
 !/package.json

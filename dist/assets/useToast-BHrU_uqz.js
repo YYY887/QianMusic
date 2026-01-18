@@ -1,0 +1,1 @@
+import{g as r}from"./index-BNZe5Fbc.js";let n=null;function s(){if(!n){const o=r();o&&(n=o.appContext.config.globalProperties.$toast)}return n||{success:o=>console.log("Success:",o),error:o=>console.error("Error:",o),warning:o=>console.warn("Warning:",o),info:o=>console.info("Info:",o)}}export{s as u};
